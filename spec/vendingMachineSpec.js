@@ -13,4 +13,23 @@ it("should calculate the proper return change for candyBar", function(){
     
      expect(vendingMachine.calculateReturnChange(vendingMachine.packsOfGum[0].price, vendingMachine.amountOfMoneyInChange)).toBe(4.85);
   });
+
+  //removes items from inventory test
+ it("Should remove Candy Bar from stock, taking it out of the array it's housed in", function(){
+
+    let itemToRemove = vendingMachine.removeItemFromInventory(vendingMachine.candyBars[0].name);
+
+    expect(itemToRemove).toEqual(new CandyBar('candy bar', .75));
+ });
+ it("Should remove Bag Of Chips from stock, taking it out of the array it's housed in", function(){
+
+    let itemToRemove = vendingMachine.removeItemFromInventory(vendingMachine.bagsOfChips[0].name);
+    expect(itemToRemove).toEqual(new BagOfChips('bag of chips', .89));
+ });
+ it("Should remove Pack Of Gum from stock, taking it out of the array it's housed in", function(){
+    let itemToRemove = vendingMachine.removeItemFromInventory(vendingMachine.packsOfGum[0].name);
+    expect(itemToRemove).toEqual(new PackOfGum('pack of gum', .15));
+ });
+
+ 
 })
