@@ -31,5 +31,30 @@ it("should calculate the proper return change for candyBar", function(){
     expect(itemToRemove).toEqual(new PackOfGum('pack of gum', .15));
  });
 
- 
+ //add items back to stock
+it("Should add Candy Bar back into inventory, adding it into the array. Checks that the array's length is one more than before entering.", function(){
+
+    let itemToAdd = vendingMachine.candyBars[0];
+
+    vendingMachine.addItemBackToInventory(itemToAdd)
+
+    expect(vendingMachine.candyBars.length).toEqual(6);
+ });
+ it("Should add Bag of Chips back into inventory, adding it into the array. Checks that the array's length is one more than before entering.", function(){
+
+    let itemToAdd = vendingMachine.bagsOfChips[0];
+
+    vendingMachine.addItemBackToInventory(itemToAdd)
+
+    expect(vendingMachine.bagsOfChips.length).toEqual(6);
+ });
+ it("Should add Pack of Gum back into inventory, adding it into the array. Checks that the array's length is one more than before entering.", function(){
+
+    let itemToAdd = vendingMachine.packsOfGum[0];
+
+    vendingMachine.addItemBackToInventory(itemToAdd)
+
+    expect(vendingMachine.packsOfGum.length).toEqual(6);
+ });
+
 })
