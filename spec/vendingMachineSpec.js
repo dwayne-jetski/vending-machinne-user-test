@@ -57,4 +57,12 @@ it("Should add Candy Bar back into inventory, adding it into the array. Checks t
     expect(vendingMachine.packsOfGum.length).toEqual(6);
  });
 
+
+  //tests adding money into the vending machine
+  it("should add moneyToAdd to amountOfMoneyInChange.", function(){
+    vendingMachine.addMoneyToMachine(5)
+    vendingMachineMoney = vendingMachine.amountOfMoneyInChange;
+    expect(vendingMachineMoney).toBe(10);
+});
+
 })
