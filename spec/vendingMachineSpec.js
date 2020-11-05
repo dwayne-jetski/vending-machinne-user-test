@@ -1,5 +1,10 @@
 describe("vendingMachine", function(){
 
+   beforeEach(function() {
+      vendingMachine = new VendingMachine();
+    });
+  
+
     //tests the calculateReturnChange on individual item prices
 it("should calculate the proper return change for candyBar", function(){
    
@@ -64,5 +69,49 @@ it("Should add Candy Bar back into inventory, adding it into the array. Checks t
     vendingMachineMoney = vendingMachine.amountOfMoneyInChange;
     expect(vendingMachineMoney).toBe(10);
 });
+
+//performTransaction() tests
+   //check purchasing each item tests
+it("Testing that an Candy Bar can be sucessfully purchased. Should return dispense item and money to return", function(){
+   let returnInfo = vendingMachine.performTransaction('candy bar', 5)
+
+   expect(returnInfo).toEqual({itemToDispense: new CandyBar('candy bar', .75), moneyToReturn:4.25 });
+});
+it("Testing that a Bag of Chips can be sucessfully purchased. Should return dispense item and money to return", function(){
+   let returnInfo = vendingMachine.performTransaction('bag of chips', 5)
+
+   expect(returnInfo).toEqual({itemToDispense: new BagOfChips('bag of chips', .89), moneyToReturn:4.11 });
+});
+it("Testing that a Pack of Gum can be sucessfully purchased. Should return dispense item and money to return", function(){
+   let returnInfo = vendingMachine.performTransaction('pack of gum', 5)
+
+   expect(returnInfo).toEqual({itemToDispense: new PackOfGum('pack of gum', .15), moneyToReturn:4.85 });
+});
+
+//that it will not allow you to buy something you don't have money for
+it("Should not let the transaction to be completed if the amountOfMoneyInserted is less than price of candy bar", function(){
+
+   let returnInfo = vendingMachine.performTransaction('candy bar', .50)
+
+   expect(returnInfo).toEqual({itemToDispense: undefined, moneyToReturn: .50});
+
+})
+
+it("Should not let the transaction to be completed if the amountOfMoneyInserted is less than price of bag of chips", function(){
+
+   let returnInfo = vendingMachine.performTransaction('bag of chips', .50)
+
+   expect(returnInfo).toEqual({itemToDispense: undefined, moneyToReturn: .50});
+
+})
+
+it("Should not let the transaction to be completed if the amountOfMoneyInserted is less than price of pack of gum", function(){
+
+   let returnInfo = vendingMachine.performTransaction('bag of chips', .10)
+
+   expect(returnInfo).toEqual({itemToDispense: undefined, moneyToReturn: .10});
+
+})
+
 
 })
